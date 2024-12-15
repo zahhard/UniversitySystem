@@ -38,7 +38,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myapplication22.database.Student
-import com.example.myapplication22.database.StudentList
 import com.example.myapplication22.ui.theme.tealGreen
 import com.gmail.hamedvakhide.compose_jalali_datepicker.JalaliDatePickerDialog
 
@@ -214,24 +213,27 @@ fun HomeScreen(navController: NavController) {
                         field.value.isNotEmpty() &&
                         sNumber.value.isNotEmpty()) {
 
-                        if (imgUri != null){
-                            var student = Student(
-                                code = sNumber.value.toInt(),
-                                name = fName.value,
-                                lastName = lName.value,
-                                birthDate = "${day.value} ${month.value} ${year.value}",
-                                field = field.value,
-                                icon = imgUri
+                        var uriTypeConverter = UriTypeConverter()
 
-                            )
+                            var student = imgUri?.let {
+                                Student(
+                                    code = sNumber.value,
+                                    firstName = fName.value,
+                                    lastName = lName.value,
+                                    birthday = "${day.value} ${month.value} ${year.value}",
+                                    field = field.value,
+                                    profileImg = it
+
+                                )
+                            }
 
 
                             if (student != null) {
-                                StudentList.studentList.add(student)
+//                                StudentList.studentList.add(student)
                             }
                             navController.navigate(Screens.StudentList.screens)
 
-                        }
+
 
 
                         Toast.makeText(

@@ -35,8 +35,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
-import com.example.myapplication22.database.StudentList
 import com.example.myapplication22.ui.theme.coral
 import com.example.myapplication22.ui.theme.ivory
 import com.example.myapplication22.ui.theme.tealGreen
@@ -75,7 +73,7 @@ fun LoginScreen(navController: NavController) {
             TextField(
                 value = username.value,
                 onValueChange = { username.value = it },
-                label = { Text("نام و نام خانوادگی") },
+                label = { Text("نام کاربری") },
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,6 +132,7 @@ fun LoginScreen(navController: NavController) {
                         username.value,
                         password.value,
                         sharedPreferences,
+                        context,
                     )
                 },
                 Modifier
@@ -161,7 +160,7 @@ fun LoginScreen(navController: NavController) {
 
 
             Text(
-                if (checked) "Checkbox is checked" else "Checkbox is unchecked"
+                if (checked) "ذخیره میشود" else "ذخیزهر نمیشود"
             )
         }
     }
@@ -173,14 +172,16 @@ fun onClick(
     username: String,
     password: String,
     sharedPreferences: SharedPreferences,
+    context: Context,
 ) {
     var isExsist = false
-    for (item in StudentList.studentList) {
-        if (password.toInt() == item.code && username == item.name) {
-            isExsist = true
-            StudentList.login = item.code
-        }
-    }
+    /* TODO */
+//    for (item in StudentList.studentList) {
+//        if (password.toInt() == item.code && username == item.name) {
+//            isExsist = true
+//            StudentList.login = item.code
+//        }
+//    }
     if (isExsist){
         if (checked){
             // ذخیره در SharedPreferences
@@ -194,7 +195,16 @@ fun onClick(
         else{
             navController.navigate("Profile")
         }
-    }else {
-        println("User not found!")
+    }
+    else {
+
+
+        Toast.makeText(
+            context,
+            "رمزعبور یا نام کاربری شما اشتباه است ",
+            Toast.LENGTH_LONG
+        )
+            .show()
+
     }
 }

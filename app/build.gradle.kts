@@ -5,6 +5,7 @@ plugins {
     id("kotlin-kapt")
     id ("kotlin-android")
     id("dagger.hilt.android.plugin")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -70,6 +71,8 @@ dependencies {
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.runtime.livedata)
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -156,4 +159,48 @@ dependencies {
     // Compose
     implementation ("androidx.compose.ui:ui:1.6.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+
+
+    // Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // Firebase
+    platform("com.google.firebase:firebase-bom:32.3.1")
+    implementation ("com.google.firebase:firebase-auth")
+    implementation ("com.google.firebase:firebase-database")
+
+
+    // Gson (برای تبدیل JSON)
+    implementation ("com.google.code.gson:gson:2.10.1")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
+    // Import the Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+
+    // TODO: Add the dependencies for Firebase products you want to use
+    // When using the BoM, don't specify versions in Firebase dependencies
+    implementation("com.google.firebase:firebase-analytics")
+
+
+    // Add the dependencies for any other desired Firebase products
+    // https://firebase.google.com/docs/android/setup#available-libraries
+
+
+
+     platform("com.google.firebase:firebase-bom:32.2.0")  // یا آخرین نسخه
+    implementation ("com.google.firebase:firebase-firestore-ktx")
+
+
+    implementation("com.google.firebase:firebase-bom:32.0.0")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
 }

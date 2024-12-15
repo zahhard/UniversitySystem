@@ -6,7 +6,9 @@ buildscript {
     }
     dependencies {
         classpath( "com.android.tools.build:gradle:8.1.1")
-        classpath ("com.google.dagger:hilt-android-gradle-plugin:2.47") // اضافه کردن این خط
+        classpath ("com.google.dagger:hilt-android-gradle-plugin:2.47")
+        classpath("com.google.gms:google-services:4.3.15")
+
     }
 }
 plugins {
